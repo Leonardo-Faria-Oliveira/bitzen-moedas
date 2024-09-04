@@ -1,16 +1,15 @@
 # Bitzen Moedas
 
-A new Flutter project.
+Dashboard de cotação de moedas com gráficoss e tabelas sobre os períodos ou dias selecionados
 
-## Getting Started
+Telas:
 
-This project is a starting point for a Flutter application.
+<img width="430" alt="splash-bitzen-moedas" src="https://github.com/user-attachments/assets/9f1ca8f4-9b39-427c-81b4-6af3ac46fa53">
 
-A few resources to get you started if this is your first Flutter project:
+<img width="430" alt="period-dashboard" src="https://github.com/user-attachments/assets/1af4c3de-f1d7-4e4e-bfc1-a99a49dd9121">
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<img width="430" alt="menu-overlay" src="https://github.com/user-attachments/assets/caf99128-670a-4d1d-bfb5-c38fab48bd9f">
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img width="430" alt="last-days-dashboard" src="https://github.com/user-attachments/assets/8ca24000-0caa-4df7-a236-8ba3ddba9899">
+
+<img width="430" alt="about-screen" src="https://github.com/user-attachments/assets/9a26142b-03f9-4ea9-ba88-21a2cd4e6612">
