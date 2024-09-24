@@ -1,6 +1,8 @@
+import 'package:bitzen_moedas/enums/periods.dart';
 import 'package:bitzen_moedas/models/price.dart';
 import 'package:bitzen_moedas/repositories/price.repository.dart';
 import 'package:bitzen_moedas/utils/convert_timestamp.dart';
+import 'package:bitzen_moedas/widgets/filterDropdown/filter_dropdown.dart';
 import 'package:bitzen_moedas/widgets/pricesDataTable/prices_data_table.dart';
 import 'package:flutter/material.dart';
 import 'package:bitzen_moedas/enums/dashboard_type.dart';
@@ -19,6 +21,10 @@ class DashboardState extends State<Dashboard> {
   DashboardType boardType = DashboardType.byLastSevenDays;
   late Future<List<Price>> prices;
 
+  static Periods selectedPeriod = Periods.sevenDays;
+
+  static List<Periods> periods = Periods.values;
+
   int logNumber = 1;
 
   void setBoard(DashboardType type) {
@@ -28,11 +34,19 @@ class DashboardState extends State<Dashboard> {
   @override
   void initState() {
     super.initState();
-    prices = getPricesByLastSevenDays("dolar", "real");
+    prices = getPricesByPeriod("dolar", "real", selectedPeriod.days.toString());
   }
 
   void setLogNumber(int number) {
     logNumber = number;
+  }
+
+  void callPricesApiOnPeriodChange(Periods? period) {
+    if (period == null) return;
+    setState(() {
+      selectedPeriod = period;
+      prices = getPricesByPeriod("dolar", "real", selectedPeriod.days.toString());
+    });
   }
 
   @override
@@ -56,18 +70,20 @@ class DashboardState extends State<Dashboard> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  const SizedBox(height: 36), // Espaço horizontal de 40 pixels
+                  FilterDropdown(periods: periods, selectedPeriod: selectedPeriod, onSelected: callPricesApiOnPeriodChange,),
                   const SizedBox(height: 40), // Espaço horizontal de 40 pixels
                   Expanded(
                     child: SingleChildScrollView(
                       child: SizedBox(
-                        width: MediaQuery.of(context).size.width, // 80% of the screen width
-                        height: 900, // 80% of the screen height
+                        width: MediaQuery.of(context).size.width, 
+                        height: 900,
                         child: Column(
                           verticalDirection: VerticalDirection.down,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             PricesChart(prices: snapshot.data!),
-                            const SizedBox(height: 40), // Espaço horizontal de 40 pixels
+                            const SizedBox(height: 40),
                             PricesDataTable(prices: snapshot.data!)
                           ],
                         ),

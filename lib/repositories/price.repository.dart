@@ -4,12 +4,12 @@ import 'package:bitzen_moedas/repositories/coin.repository.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-Future<List<Price>> getPricesByLastSevenDays(String coin, String refCoin) async {
+Future<List<Price>> getPricesByPeriod(String coin, String refCoin, String period) async {
 
   final CoinsCombination coinsCombination = getCoinCombination("$coin-$refCoin");
 
   final response = await http
-      .get(Uri.parse('https://economia.awesomeapi.com.br/json/daily/${coinsCombination.getCode()}/7'));
+      .get(Uri.parse('https://economia.awesomeapi.com.br/json/daily/${coinsCombination.getCode()}/$period'));
   
   if (response.statusCode == 200) {
     final json = jsonDecode(response.body);
